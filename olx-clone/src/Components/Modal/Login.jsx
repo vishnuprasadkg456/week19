@@ -9,23 +9,26 @@ import { signInWithPopup } from "firebase/auth"
 import { auth, provider } from "../Firebase/Firebase"
 
 
-const Login = ({toggleModal, status}) => {
 
+const Login = ({toggleModal, status}) => {
    const handleClick = async()=>{
     try {
+
      const result =   await signInWithPopup(auth,provider);
         toggleModal();
         console.log('User' , result.user);
     } catch (error) {
-        console.log(error); 
+        console.log(error);
+        
+        
     }
    }
   return (
     <div>
             <Modal theme={{
                 "content": {
-                    "base": "relative w-full p-4 md:h-auto",
-                    "inner": "relative flex max-h-[90dvh] flex-col rounded-lg bg-white shadow dark:bg-gray-700"
+                    "base": "relative w-full p-4 md:h-auto max-w-md",
+                    "inner": "relative flex max-h-[90dvh] flex-col rounded-lg bg-white shadow dark:bg-gray-700 bg-opacity-50"
                 },
             }} onClick={toggleModal} className="bg-black rounded-none" position={'center'} show={status} size="md" popup={true}>
                 <div onClick={(event)=> event.stopPropagation()}   className="p-6 pl-2 pr-2 bg-white">
